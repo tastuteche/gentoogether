@@ -1,21 +1,22 @@
 * gentoogether
 gentoogether(gentoo together) is a portable solution based on gentoo rap(gentoo prefix).
+a second os(gentoo) living together with host os(linux).
 * usage
 * how it works
 gentoo rap can build toolchain into a prefix dir,/r/a/p by example.
-then /r/a/p/usr/bin/gcc can build everything into /r/a/p,such as /r/a/p/usr/bin/{firefox,emacs...}
-also /r/a/p/usr/bin/{sudo,su}
-you can add user(usertogether by exmaple,specialize home dir:/r/a/p/home/usertogether) in /r/a/p/etc/{passwd,group}
-then /r/a/p/startprefix
-sudo su - usertogether
-that is it!!!
+then /r/a/p/usr/bin/gcc can build everything into /r/a/p,such as /r/a/p/usr/bin/{firefox,emacs…}.
+also /r/a/p/usr/bin/{sudo,su}.
+you can add user(usertogether by exmaple,specialize home dir:/r/a/p/home/usertogether) in /r/a/p/etc/{passwd,group}.
+then /r/a/p/startprefix.
+sudo su - usertogether.
+that is it!
 * how to install
 ** 1 follow the instructions
-https://wiki.gentoo.org/wiki/Project:Android
-https://wiki.gentoo.org/wiki/Prefix/libc
-at last,you will get /r/a/p/startprefix
+https://wiki.gentoo.org/wiki/Project:Android.
+https://wiki.gentoo.org/wiki/Prefix/libc.
+at last,you will get /r/a/p/startprefix.
 ** 2 build sudo
-emerge sudo
+emerge sudo.
 ** 3 add user in /r/a/p/etc/{passwd,group}
 ** 4 emrege other softwares you needs
 * the problems you might meet
@@ -26,36 +27,36 @@ emerge sudo
 * the road to gentoogether
 ** liberkey
 since 2008,I am looking for a portable solution,by which I can carry gigs of data around on flash drives smaller than a modest pack of chewing gum.
-at first,liberkey Amazed Me,and I switched to it for 3 years. liberkey portable app suite contains firefox,chrome,notepad++,vlc...  those apps saves data on your
+at first,liberkey Amazed Me,and I switched to it for 3 years. liberkey portable app suite contains firefox,chrome,notepad++,vlc…  those apps saves data on your
 flash drivers,which means  one flash driver,works on office,home,friends's computer with windows and hardware drivers installed only,no extra softwares.
 ** ubuntu + AppImageKit
 since 2010,my main os switched to ubuntu,windows in vbox.after years of searching for portable solution under linux.I found AppImageKit.AppImageKit ,Package desktop applications as AppImages that run on common Linux-based operating systems, such as RHEL, CentOS, openSUSE, SLED, Ubuntu, Fedora, debian and derivatives. 
-it works very well.
+it works  well.
 pros and cons:
 - you need distros provide those packages you need.those apps can only build from source with gcc ,AppImageKit can do nothing.
-- how about build a portable emacs? you need package those ag,plantuml ,gcc... together
+- how about build a portable emacs? you need package those ag,plantuml ,gcc,shellcheck… together.
 - how about build a portable playonlinux,which depends on python?
 ** docker + gcc 
 I was frustrated with vmware,vbox for graphics cards,until I found docker . 
 you can even run dota2 in docker.
-docker+playonlinux+nvidia
-docker+steam+nvidia
+- docker+playonlinux+nvidia
+- docker+steam+nvidia
 as long as your nvidia driver in docker is same as nvidia driver in host os.
 pros and cons:
 - gcc in docker,can build everything from source.
 - you need docker installed on linux machines,kernel with docker  support
 - windows not supported
--docker images are too big
+- docker images are too big
 ** gentoo rap(gentoo prfiex)+ livedvd,final solution
 yeah,I am a developer,love everything build from source.gentoo rap can build toolchain into a prefix dir,/r/a/p by example.
-then /r/a/p/usr/bin/gcc can build everything into /r/a/p,such as /r/a/p/usr/bin/firefox,emacs...
+then /r/a/p/usr/bin/gcc can build everything into /r/a/p,such as /r/a/p/usr/bin/firefox,emacs…
 gentoo rap has its own libc, depends on linux kernel only,which provided by linux distros(livedvd).
-further,gentoo rap can builded on andorod,freebsd,linux,mac os,windows...or Cross-Compiling under gentoo prefix
+further,gentoo rap can builded on andorod,freebsd,linux,mac os,windows…or Cross-Compiling under gentoo prefix.
 one gentoo rap profiles,works everywhere.
 pros and cons:
-- you build a second os in a prefix,/r/a/p
+- you build a second os in a prefix,/r/a/p.
 - nvidia ,vbox only provides binnary,no sources provided,which means,you can not speicalize a prefix .
-
+my solution to this problem :https://github.com/tastuteche/my_custom_sabayon_livedvd.
 * similar projects
-https://github.com/AppImage/AppImageKit
+https://github.com/AppImage/AppImageKit.
 
