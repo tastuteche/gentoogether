@@ -1,0 +1,68 @@
+#!/r/a/p/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Illegal number of parameters"
+    exit 1
+fi
+
+rap_prefix_dir=$1
+
+
+if [[ "$rap_prefix_dir" =~ ^/r/a/p ]]; then
+    echo "rap_prefix_dir found:$rap_prefix_dir"
+    
+else
+    echo "!!!rap_prefix_dir"
+    #exit 1
+    
+fi
+
+
+#.  ..  bin  boot  dev  etc  home  lib  lib32  lib64  lost+found  media  mnt  new  opt  proc  root  run  sbin  srv  stage3-amd64-20150903.tar.bz2  sys  tmp  .tramp_history  usr  var
+#.  ..       boot  dev       home                     lost+found  media  mnt  new       proc                   srv  stage3-amd64-20150903.tar.bz2  sys       .tramp_history
+
+
+
+
+if [ ! -d "$rap_prefix_dir" ]; then
+    # Control will enter here if $DIRECTORY doesn't exist.
+    echo "!!!rap_prefix_dir not exists:$rap_prefix_dir"
+    exit 1
+fi
+#https://regexper.com/
+#https://www.debuggex.com/
+#https://github.com/aloisdg/awesome-regex
+#http://regviz.org/
+#https://jex.im/regulex/#!embed=false&flags=&re=%5E(a%7Cb)*%3F%24
+#
+preceded='((?<=e LOCALSTATEDIR )|(?<!LOCALSTATEDIR )(?<!^#))'
+before_='([^a-zA-Z0-9})/@.<\\]|-[LI]|^\s*|[^a-zA-Z0-9]\\)'
+middle_='[(]?(usr|lib|etc|var|tmp|bin|sbin|share|opt|libexec|lib64|lib32|run|root)'
+p1='([A-Z_,=]|^\s*)'
+p2='(\s+)'
+p3='[A-Z_]+'
+
+expr='('"${preceded}${before_}/${middle_}"'\b)|('"${p1}${p2}${p3}"' "/r/a/p)'
+
+out_prefix_path_check() {
+    
+    local found=() f
+    while read  -r f; do
+	found+=( "${f}" )
+        echo "--------------------------------------------------------------------------------------"
+        echo "${f}"
+        #grep -E '([^a-zA-Z0-9}/@.<]|-[LI])/(usr|lib|etc|var|tmp|bin|sbin|share|opt|libexec|lib64|lib32|run|root|boot|dev|home|media|mnt|proc|srv|sys)\b' "${f}"
+	#grep -E '([^a-zA-Z0-9})/@.<]|-[LI])/(usr|lib|etc|var|tmp|bin|sbin|share|opt|libexec|lib64|lib32|run|root|boot|home|media|mnt|proc|srv|sys)\b' "${f}"
+	#grep -E '([^a-zA-Z0-9})/@.<]|-[LI]|^\s*)/(usr|lib|etc|var|tmp|bin|sbin|share|opt|libexec|lib64|lib32|run|root|boot|media|mnt|proc|srv|sys)\b' "${f}"
+	#grep -E '([^a-zA-Z0-9})/@.<]|-[LI]|^\s*)/(usr|lib|etc|var|tmp|bin|sbin|share|opt|libexec|lib64|lib32|run|root|media|mnt)\b' "${f}"
+	
+	##pp_debug awk '$5 '$op' /^\/(usr|opt)(\/|$)/ { print; }'
+	#([A-Z_,=]|^\s*)(\s+)LOCALSTATEDIR "/r/a/p (?!([A-Z_,=]|^\s*)(\s+)LOCALSTATEDIR) (([^A-Z_,=]|^\s*)(\s+)LOCALSTATEDIR)? (?!(([A-Z_,=]|^\s*)(\s+)LOCALSTATEDIR))
+	grep --color=always -P "$expr" "${f}"
+    done < <(find ${rap_prefix_dir} -type f ! -name '*_old' -and ! -name '*\.py[co]' -exec grep -Pl "$expr" {} \;|| die)
+}
+
+
+
+
+out_prefix_path_check
