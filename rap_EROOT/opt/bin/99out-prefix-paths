@@ -58,7 +58,7 @@ out_prefix_path_check() {
 	
 	##pp_debug awk '$5 '$op' /^\/(usr|opt)(\/|$)/ { print; }'
 	#([A-Z_,=]|^\s*)(\s+)LOCALSTATEDIR "/r/a/p (?!([A-Z_,=]|^\s*)(\s+)LOCALSTATEDIR) (([^A-Z_,=]|^\s*)(\s+)LOCALSTATEDIR)? (?!(([A-Z_,=]|^\s*)(\s+)LOCALSTATEDIR))
-	grep --color=always -P "$expr" "${f}"
+	grep --color=always -Pn "$expr" "${f}"
     done < <(find ${rap_prefix_dir} -type f ! -name '*_old' -and ! -name '*\.py[co]' -exec grep -Pl "$expr" {} \;|| die)
 }
 
