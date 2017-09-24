@@ -9,7 +9,7 @@ ebfile="$1"
 
 if [ -f "$ebfile"  ]
 then
-  echo "Successfully found file:$ebfile"
+  echo "Successfully found file: $ebfile"
 else
   echo "Could not find  file" >&2
   exit 1
@@ -23,7 +23,7 @@ echo "###emerge $1"
 echo "###emerge =$1"
     exit 1
 else
-    echo "main file found:$ebfile"
+    echo "main file found: $ebfile"
 fi
 if [[ "$ebfile" =~ "/r/a/p/var/lib/layman/libressl/" ]]; then
     echo "!!!layman/libressl"
@@ -83,11 +83,11 @@ fi
 
 if [ ! -f "$local_ebfile" ]; then
     # Control will enter here if $DIRECTORY doesn't exist.
-	echo "coping to:$local_ebfile"
+	echo "coping to: $local_ebfile"
     cp $ebfile $local_ebfile
     ebuild $local_ebfile digest
 else
-     echo "!!!local file already exists:$local_ebfile"
+     echo "!!!local file already exists: $local_ebfile"
 fi
 
 main_dir=${ebfile%/*}
