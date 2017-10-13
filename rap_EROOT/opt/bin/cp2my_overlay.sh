@@ -60,7 +60,10 @@ elif [[ "$ebfile" =~ "/r/a/p/var/lib/layman/sabayon-distro/" ]]; then
     local_ebfile=$(echo $ebfile|sed -e 's@/var/lib/layman/sabayon-distro/@/usr/local/portage/@')  
 elif [[ "$ebfile" =~ "/r/a/p/var/lib/layman/bitcoin/" ]]; then
     echo "!!!layman/bitcoin"
-    local_ebfile=$(echo $ebfile|sed -e 's@/var/lib/layman/bitcoin/@/usr/local/portage/@')  
+    local_ebfile=$(echo $ebfile|sed -e 's@/var/lib/layman/bitcoin/@/usr/local/portage/@')
+elif [[ "$ebfile" =~ "/r/a/p/var/lib/layman/R_Overlay/" ]]; then
+    echo "!!!layman/R_Overlay"
+    local_ebfile=$(echo $ebfile|sed -e 's@/var/lib/layman/R_Overlay/@/usr/local/portage/@')    
 else
     echo "!!! unknown layman"
     exit 1
