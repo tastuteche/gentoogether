@@ -1,1 +1,9 @@
 .#*
+rap_EROOT/opt/bin/nvidia-cuda-mps-control
+rap_EROOT/opt/bin/nvidia-cuda-mps-server
+rap_EROOT/opt/bin/nvidia-debugdump
+rap_EROOT/opt/bin/nvidia-modprobe
+rap_EROOT/opt/bin/nvidia-persistenced
+rap_EROOT/opt/bin/nvidia-smi
+rap_EROOT/opt/bin/nvidia-xconfig
+
